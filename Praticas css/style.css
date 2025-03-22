@@ -1,0 +1,22 @@
+body {
+    background-color: white;
+}
+
+h1 {
+    color: red;
+    padding: 60px;
+}
+
+p {
+    font-size: 30px;
+}
+
+#paragrafo1{
+    color: rgb(55, 0, 255);
+}
+
+
+
+.paragrafo2{
+    color: brown;
+}

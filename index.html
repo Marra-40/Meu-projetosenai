@@ -3,9 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Página</title>
+    <title>Aula HTML</title>
+    <!-- <style>
+        body{
+            background-color: gray;
+        }
+    </style> -->
 </head>
 <body>
+
+    <header>
+        <h1>Plataforma de Cursos do Senai</h1>
+        <nav>
+            <ul>
+                <li>Principal</li>
+                <li>Área do Aluno</li>
+                <li>Sobre o Senai</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h3>Meus Cursos Inscritos</h3>
+            <p>Bem-vindo a área do aluno!</p>
+            <p>Programe-se para concluir as atividades dentro do prazo.</p>
+            <p>Em caso de dúvidas, entre em contato com o suporte.</p>
+
+            <h4>Cursos em Andamento</h4>
+            <ul>
+                <li><strong>Desenvolvimento JS</strong> - Progresso: 35%</li>
+                <li><strong>Programação em Python</strong> - Progresso: 95%</li>
+                <li><strong>Banco de Dados SQL</strong> - Progresso: 50%</li>
+            </ul>
+
+            <h4>Cursos Concluídos</h4>
+            <ol type="I">
+                <li><strong>Confeitaria</strong> - concluído em 02/2024</li>
+                <li><strong>Eletrônica</strong> - concluído em 12/2021</li>
+                <li><strong>Panificação</strong> - concluído em 07/2023</li>
+            </ol>
+
+        </section>
+
+        <section>
+            <h3>Alunos em Destaque</h3>
+            <dl>
+                <dt>Desenvolvimento JS</dt>
+                <dd>Fulano da Silva - Nota: 9.8</dd>
+                <dd>Fulana Santos - Nota: 9.9</dd>
+
+                <dt>Programação em Python</dt>
+                <dd>Fulano da Silva - Nota: 9.8</dd>
+                <dd>Fulana Santos - Nota: 9.9</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h3>Calendário das Aulas</h3>
+            <p>Fique atento ao <b>prazo</b> das <strong>atividades</strong></p>
+            <p>Fique atendo ao <i>prazo</i> das <em>atividades</em></p>
+            <p>Esse é um texto <sup>sobrescrito</sup> e <sub>subscrito</sub></p>
+            <p>Texto <ins>inserido</ins> e texto <del>excluído</del></p>
+            <p>Mais um texto, agora <small>pequeno</small> e <mark>destacado</mark></p>
+        </section>
+
+        <section>
+            <h3>Material Complementar</h3>
+            <a href="https://sp.senai.br/unidade/presidenteprudente/" target="_blank" rel="noopener noreferrer">Clique aqui</a>
+
+            <a href="https://sp.senai.br/unidade/presidenteprudente/" target="_blank" rel="noopener noreferrer">
+                <img src="https://cronos-media.sesisenaisp.org.br//api/media/1-0/files?img=img_1_230829_d339a06d-6dca-4a91-b890-a0eba7ca4c5f_o.avif" alt="Imagem do Senai" width="150" height="150">
+            </a>
+        </section>
+
+        <section>
+            <h3>Financeiro</h3>
+            <table border="1">
+                <tr>
+                    <th>Mês</th>
+                    <th>Valor</th>
+                    <th>Situação</th>
+                </tr>
+                <tr>
+                    <td>Fevereiro</td>
+                    <td>R$ 100,00</td>
+                    <td>Pago</td>
+                </tr>
+                <tr>
+                    <td>Março</td>
+                    <td>R$ 100,00</td>
+                    <td><mark>Em aberto</mark></td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h3>Videoaula da Semana</h3>
+            <video src="https://file-examples.com/storage/fe46ad26fa67d4043a4b9e6/2017/04/file_example_MP4_480_1_5MG.mp4" width="150" height="150" controls>              
+            </video>
+
+            <h3>Podcast</h3>
+            <audio controls>
+                <source src="file_example_MP3_700KB.mp3" type="audio/mp3">
+                Seu navegador não suporta o áudio
+            </audio>
+
+        </section>
+
+        <section>
+            <h3>Solicitação de Certificado</h3>
+            <form action="" method="post">
+                <label for="nome">Nome:</label>
+                <br>
+                <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+                <br><br>
+                <label for="email">E-mail:</label>
+                <br>
+                <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
+                <br><br>
+                <label for="curso">Curso</label>
+                <br>
+                <select name="curso" id="curso" required>
+                    <option value="">Selecione</option>
+                    <option value="js">Desenvolvimento JS</option>
+                    <option value="python">Programação em Python</option>
+                    <option value="sql">Banco de Dados SQL</option>
+                </select>
+                <br><br>
+                <label for="obs">Observações</label>
+                <br>
+                <textarea name="obs" id="obs" rows="4" cols="50" placeholder="Se houver alguma observação, informe nesse campo"></textarea>
+
+                <button type="submit">Enviar</button>
+                <input type="submit" value="Solicitar">
+
+            </form>
+        </section>
+
+    </main>
+
+    <footer></footer>
     
+
+
+
+
+
+
 </body>
 </html>
