@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 7</title>
+</head>
+<body>
+
+    <script>
+
+
+        var numero = 10;
+        if (numero > 10){
+            console.log("maior que 10");
+       } else {
+        console.log("menor ou igual a 10");
+       }
+
+        //exercicio 2
+        // saber se o número é par ou impar
+        var numero = 7;
+        if (numero % 2 === 0){
+            console.log("Par");
+         } else {
+            console.log("Impar");
+         }
+
+         //exercicio 3
+         //maior e menor número
+        
+var numero1 = 20;
+var numero2 = 20;
+var numero3 = 20;
+
+if (numero1 === numero2 && numero2 === numero3) {
+  console.log("Todos os números são iguais.");
+} else {
+  console.log("Os números são diferentes.");
+}
+
+//exercicio 4
+//calculadora simples => use switch
+//var operacao = + ou / ou *
+//var numero1 = 10
+//var numero2 = 2
+
+
+var operacao = '/';  
+var numero1 = 10;
+var numero2 = 5;
+var resultado;
+
+
+switch(operacao) {
+  case '+':
+    resultado = numero1 + numero2;
+    break;
+  case '*':
+    resultado = numero1 * numero2;
+    break;
+  case '/':
+    if (numero2 !== 0) {
+      resultado = numero1 / numero2;
+    } else {
+      resultado = "Erro: divisão por zero!";
+    }
+    break;
+  default:
+    resultado = " Tente novamente!";
+}
+
+console.log("Resultado: " + resultado);
+
+
+    </script>
+    
+</body>
+</html>
