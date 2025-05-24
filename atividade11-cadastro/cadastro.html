@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Usuários</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="p-4">
+  <div class="container-fluid">
+    <h2 class="mb-4">📋 Cadastro de Usuários</h2>
+
+    <form id="formUsuario">
+      <input type="hidden" id="indice">
+
+      <div class="row mb-2">
+        <div class="col-md-4">
+          <input type="text" id="nome" class="form-control" placeholder="Nome">
+        </div>
+        <div class="col-md-4">
+          <input type="email" id="email" class="form-control" placeholder="E-mail">
+        </div>
+        <div class="col-md-4">
+          <input type="tel" id="telefone" class="form-control" placeholder="Telefone">
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-3">
+          <input type="text" id="cep" class="form-control" placeholder="CEP">
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-secondary w-100" onclick="buscarCep()">Buscar CEP</button>
+        </div>
+        <div class="col-md-7">
+          <input type="text" id="rua" class="form-control" placeholder="Rua">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-2">
+          <input type="text" id="numero" class="form-control" placeholder="Número">
+        </div>
+        <div class="col-md-4">
+          <input type="text" id="bairro" class="form-control" placeholder="Bairro">
+        </div>
+        <div class="col-md-4">
+          <input type="text" id="cidade" class="form-control" placeholder="Cidade">
+        </div>
+        <div class="col-md-2">
+          <input type="text" id="estado" class="form-control" placeholder="Estado">
+        </div>
+      </div>
+
+      <button class="btn btn-success" type="button" onclick="salvarUsuario()">Salvar</button>
+      <button class="btn btn-warning" type="button" onclick="cancelar()">Cancelar</button>
+    </form>
+
+    <hr>
+
+    <h4 class="mt-4">👥 Usuários Cadastrados</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered mt-2">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>CEP</th>
+            <th>Rua</th>
+            <th>nº</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaUsuarios"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+
+    function salvarUsuario(){
+        if(document.getElementById("nome").value == ""){
+            alert("O campo nome é obrigatório");
+            return;
+        }
+
+    
+
+    
+        if(document.getElementById("email").value == ""){
+            alert("O campo email é obrigatório");
+            return;
+        }
+
+    
+
+    
+        if(document.getElementById("telefone").value == ""){
+            alert("O campo telefone é obrigatório");
+            return;
+        }
+
+    
+
+
+    let usuario = {
+        nome: document.getElementById("nome").value,
+        email: document.getElementById("email").value,
+        telefone: document.getElementById("telefone").value,
+        cep: document.getElementById("cep").value,
+        rua: document.getElementById("rua").value,
+        numero: document.getElementById("numero").value,
+        bairro: document.getElementById("bairro").value,
+        cidade: document.getElementById("cidade").value,
+        estado: document.getElementById("estado").value,
+
+    }
+
+    let indice = document.getElementById("indice").value;
+
+    if(indice == ""){
+      usuarios.push(usuario);
+    }else{
+      usuarios[indice] = usuario;
+    }
+
+    localStorage.setItem("usuarios",JSON.stringify(usuarios));
+    listarUsuario();
+    cancelar();
+
+    }
+    function buscarCep(){
+      let cep = document. getElementById("cep").value;
+
+      if(cep.length !=  8 && cep.length != 9){
+        alert("CEP inva´lido. Digite novamente!");
+        return;
+      }
+
+      fetch(`https://viacep.com.br/ws/${cep}/json`)
+        .then(res => res.json())
+        .then(dados => {
+
+          if (dados.erro){
+            alert("Cep não encontrado");
+            return;
+          }
+
+          document.getElementById("rua").value = dados.logradouro;
+          document.getElementById("bairro").value = dados.bairro;
+          document.getElementById("cidade").value = dados.logradouro;
+          document.getElementById("estado").value = dados.uf;
+
+        }).catch(() => alert("Erro ao buscar CEP"));
+
+
+    }
+
+   
+
+    function listarUsuario(){
+      let tbody = document.getElementById("tabelaUsuarios");
+      tbody.innerHTML = "";
+
+      for (let i = 0; i , usuarios.length; i++){
+        let tr = document.createElement("tr");
+        let u = usuarios[i];
+        tr.innerHTML = `
+          <td>${u.nome}</td>
+          <td>${u.email}</td>
+          <td>${u.telefone}</td>
+          <td>${u.cep}</td>
+          <td>${u.rua}</td><td>
+          <td>${u.numero}</td>
+          <td>${u.bairro}</td>
+          <td>${u.cidade}</td>
+          <td>${u.estado}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" onclick="editarUsuario(${i})">Editar</button>
+            <button class="btn btn-sm btn-danger" onclick="excluirUsuario(${i})">Excluir</button>
+          </td>
+
+         `;
+
+         tbody.appendChild(tr);
+
+      }
+
+
+    }
+
+    function editarUsuario(i){
+      let u = usuarios[i];
+      document.getElementById("nome").value = u.nome;
+      document.getElementById("email").value = u.email;
+      document.getElementById("telefone").value = u.email;
+      document.getElementById("cep").value = u.cep;
+      document.getElementById("rua").value = u.rua;
+      document.getElementById("numero").value = u.numero; 
+      document.getElementById("bairro").value = u.bairro; 
+      document.getElementById("cidade").value = u.cidade;
+      document.getElementById("estado").value = u.estado;
+      document.getElementById("indice").value = i;
+
+
+    }
+    
+    function excluirUsuario(i){
+
+      if (confirm("Deseja realmente excluir o usuario")){
+        usuarios.splice(i,1);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        listarUsuario();
+      }
+      cancelar();
+
+}
+
+
+
+    function cancelar(){
+      document.getElementById("formUsuario").reset();
+      document.getElementById("indice").value = "";
+    }
+
+   
+
+
+
+
+    
+    
+   
+
+
+
+
+
+  
+
+  </script>
+</body>
+
+</html>
